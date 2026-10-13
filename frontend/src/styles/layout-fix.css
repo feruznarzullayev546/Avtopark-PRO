@@ -1,0 +1,428 @@
+
+/* AVTOPARK PRO — layout correction */
+:root {
+  --sidebar-width: 240px;
+  --topbar-height: 64px;
+  --app-bg: #f3f6fc;
+  --surface: #ffffff;
+  --text-primary: #152746;
+  --border-color: #e3eaf4;
+}
+
+/* Global reset */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--text-primary);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Main application layout */
+.app-layout,
+.app-shell,
+.dashboard-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+/* Sidebar */
+.sidebar,
+.app-sidebar,
+aside.sidebar {
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  min-height: 100vh;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #0b132b;
+  z-index: 30;
+}
+
+/* Main content must use the remaining width */
+.main-content,
+.app-main,
+.main-area {
+  flex: 1 1 auto;
+  width: 0;
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top navigation */
+.topbar,
+.app-topbar,
+.navbar {
+  flex: 0 0 var(--topbar-height);
+  width: 100%;
+  min-height: var(--topbar-height);
+  height: var(--topbar-height);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #fff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Page container */
+.page-content,
+.page-container,
+.main-content-inner {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 20px 24px 28px;
+  align-self: stretch;
+}
+
+/* Prevent pages from being unexpectedly centered or narrowed */
+.page-content > *,
+.page-container > *,
+.main-content-inner > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.companies-page,
+.company-center,
+.platform-page,
+.dashboard-page,
+.warehouse-pro,
+.page {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Remove accidental vertical gaps */
+.page-content,
+.page-container,
+.main-content-inner {
+  margin-top: 0;
+  transform: none;
+}
+
+.page-content h1,
+.page-container h1,
+.main-content-inner h1 {
+  margin-top: 0;
+}
+
+/* Cards and grids */
+.stats-grid,
+.kpi-grid,
+.dashboard-grid,
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.card,
+.panel,
+.table-card {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+}
+
+/* Tables should scroll horizontally rather than shrink the entire page */
+.table-wrap,
+.table-responsive,
+.table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Images must not stretch the page */
+img,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+
+  .page-content,
+  .page-container,
+  .main-content-inner {
+    padding: 16px;
+  }
+
+  .stats-grid,
+  .kpi-grid,
+  .dashboard-grid,
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  :root {
+    --sidebar-width: 0px;
+    --topbar-height: 58px;
+  }
+
+  .sidebar,
+  .app-sidebar,
+  aside.sidebar {
+    width: 0;
+    min-width: 0;
+    flex-basis: 0;
+    display: none;
+  }
+
+  .main-content,
+  .app-main,
+  .main-area {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .page-content,
+  .page-container,
+  .main-content-inner {
+    padding: 12px;
+  }
+
+  .stats-grid,
+  .kpi-grid,
+  .dashboard-grid,
+  .cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* Layout konteynerini to'g'ri joylashtirish */
+html, body, #root, .app-shell {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.app-shell {
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 100vh !important;
+  background-color: #0d1117 !important; /* qorong'i tema uchun */
+}
+
+/* Sidebar kengligi va joylashuvini qat'iy belgilash */
+.sidebar, 
+aside,
+aside.sidebar {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+  flex: 0 0 260px !important;
+  height: 100vh !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Asosiy kontent maydonini Sidebarga halqit bermaydigan qilish */
+.main-content, 
+.page-content, 
+main {
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* Flexbox ichida sig'may ketishini oldini oladi */
+  width: calc(100% - 260px) !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+}
+
+/* Jadvallar va bloklarning ekrandan chiqib ketishini to'g'rilash */
+.panel, .table-wrapper, table {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+/* Navigatsiya menyusi skroll zonasi */
+.sidebar-nav, nav {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding: 10px 12px !important;
+}
+
+/* Rasm menyuning eng pastiga tabiiy tushishi uchun */
+.sidebar-road-promo {
+  position: relative !important;
+  margin-top: 16px !important;
+  margin-bottom: 8px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  z-index: 1 !important;
+}
+
+/* Akkaunt paneli ekranning eng pastida qotib turadi */
+.user-box {
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  z-index: 10 !important;
+  background: #070d1e !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 12px 14px !important;
+}
+/* Tanlangan (faol) menyu tugmasining rangini to'g'rilash */
+.sidebar-nav .nav-item.active,
+.sidebar-nav a.active,
+nav .nav-item.active,
+nav a.active {
+  background-color: #1e293b !important; /* To'q qora/kulrang fon */
+  color: #38bdf8 !important;            /* Aniq ko'rinadigan ko'k/moviy matn rangi */
+  font-weight: 700 !important;
+  border-left: 4px solid #38bdf8 !important; /* Chap tomondan chiroyli ko'k chiziq */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Tanlangan menyu ichidagi ikonka rangi */
+.sidebar-nav .nav-item.active svg,
+.sidebar-nav a.active svg,
+nav .nav-item.active svg {
+  color: #38bdf8 !important;
+}
+/* Promo banner menyuga yopishib turmasligi uchun masofa berish */
+.sidebar-road-promo.desktop-only-promo {
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  margin-left: 12px !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Tanlangan menyuning to'q rangda ko'rinishi */
+.sidebar-nav .nav-item.active,
+.sidebar-nav a.active {
+  background-color: #1e293b !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  border-left: 4px solid #38bdf8 !important;
+}
+
+/* Mobil versiyada rasmni umuman yashirish */
+@media (max-width: 1024px) {
+  .desktop-only-promo {
+    display: none !important;
+  }
+}
+/* 1. Sidebar va menyu konteynerini butun ekran balandligiga moslash */
+aside.sidebar, 
+.sidebar {
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* 2. Menyu ro'yxatini cho'zish va skrollni silliqlash */
+.sidebar-nav, 
+nav.sidebar-nav {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  padding: 6px 10px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important; /* Tugmalar orasidagi ortiqcha ochiq joyni kamaytirish */
+}
+
+/* 3. Har bir menyu tugmasi balandligini moslashtirish (hamma bo'lim sig'ishi uchun) */
+.sidebar-nav .nav-item,
+.sidebar-nav a {
+  padding: 8px 12px !important;   /* Vertikal masofani ixchamlash */
+  font-size: 14px !important;     /* Qulay va o'qishga oson o'lcham */
+  min-height: 38px !important;    /* Tugma balandligi */
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+/* 4. Yuqoridagi til va kompaniya almashtirgich bloklarining marginlarini kamaytirish */
+.lang-switcher,
+.company-switcher {
+  margin-bottom: 6px !important;
+  flex-shrink: 0 !important;
+}
+
+/* 5. Pastdagi profil (user-box) blokini eng pastda saqlash */
+.user-box {
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+  padding: 10px 12px !important;
+}
+/* Sidebar menyu konteyneri */
+.sidebar-nav {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  padding: 8px 10px !important;
+}
+
+/* Akkaunt bloki menyuning eng oxirgi elementi sifatida qat'iy joylashadi va menyu bilan birga skroll qiladi */
+.user-box.inline-user-box {
+  display: flex !important;
+  align-items: center !important;
+  margin-top: 12px !important;
+  margin-bottom: 4px !important;
+  padding: 8px 12px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  position: static !important; /* Ustiga chiqib ketishini oldini oladi */
+  flex-shrink: 0 !important;
+}

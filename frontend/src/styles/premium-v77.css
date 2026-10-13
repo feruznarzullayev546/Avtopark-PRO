@@ -1,0 +1,27 @@
+/* AVTOPARK PRO V77: consistent page surfaces, spacing and responsive controls */
+:root{--ap-bg:#f4f7fc;--ap-card:#fff;--ap-ink:#14213d;--ap-muted:#667892;--ap-border:#e2eaf4;--ap-blue:#2563eb;--ap-blue-soft:#eff5ff;--ap-radius:16px;--ap-elevation:0 8px 26px rgba(25,55,99,.055)}
+body{background:var(--ap-bg);color:var(--ap-ink)}
+.page,.dashboard-page,.trips-page,.reports-page,.chat-page{color:var(--ap-ink);min-width:0}
+.page :is(.panel,.card,.table-card,.section-card,.report-card,.warehouse-card,.route-card,.trip-card),.dashboard-page :is(.panel,.card,.dashboard-kpi,.dashboard-table-card),.reports-page :is(.panel,.card,.report-card){background:var(--ap-card);border:1px solid var(--ap-border);border-radius:var(--ap-radius);box-shadow:var(--ap-elevation)}
+.page :is(h1,h2,h3),.dashboard-page :is(h1,h2,h3),.reports-page :is(h1,h2,h3){color:#142746;letter-spacing:-.025em}
+.page :is(.eyebrow,.section-subtitle,.muted,.hint),.dashboard-page :is(.muted,.hint){color:var(--ap-muted)}
+.page :is(input,select,textarea),.modal :is(input,select,textarea){max-width:100%;min-width:0;border-radius:10px}
+.page :is(button,.btn),.modal :is(button,.btn){transition:background .15s ease,border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.page :is(button,.btn):focus-visible,.modal :is(button,.btn):focus-visible{outline:3px solid rgba(37,99,235,.22);outline-offset:2px}
+.page :is(table){width:100%;border-collapse:separate;border-spacing:0}
+.page :is(th){background:#f7f9fd;color:#526580;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.035em}
+.page :is(td,th){padding:12px 14px;border-bottom:1px solid #edf1f7;text-align:left}
+.page :is(tr:last-child td){border-bottom:0}
+.page :is(.table-wrap,.table-scroll,.table-responsive){max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.page :is(.empty-state,.loading-card){border:1px dashed #d7e2f0;border-radius:14px;background:#fbfdff}
+/* Page-specific polish without changing component behavior. */
+.routes-pro .routes-hero,.trips-page .trips-hero,.reports-page .reports-hero,.warehouse-pro .warehouse-hero{border-radius:18px;overflow:hidden}
+.company-center :is(.panel,.card){border-radius:15px}
+.settings-page :is(.panel,.settings-card){border:1px solid var(--ap-border);border-radius:15px;background:#fff}
+.platform-page :is(.panel,.card){border:1px solid var(--ap-border);border-radius:15px}
+.chat-page :is(.chat-sidebar,.chat-main,.conversation-list,.message-panel){min-width:0;max-width:100%}
+.modal-backdrop{padding:16px;overflow:auto}
+.modal{max-width:min(720px,100%);max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--ap-border);border-radius:18px;box-shadow:0 24px 80px rgba(15,23,42,.22)}
+@media(max-width:900px){.page :is(.grid,.stats-grid,.kpi-grid){min-width:0}.page :is(.toolbar,.filters,.filter-row){flex-wrap:wrap}.page :is(.toolbar input,.filters input,.filters select){min-width:0;max-width:100%}}
+@media(max-width:760px){.page :is(.form-grid,.fields-grid){grid-template-columns:minmax(0,1fr)!important}.page :is(.page-head,.section-head){align-items:stretch;gap:12px}.page :is(.page-head .actions,.section-head .actions){flex-wrap:wrap}.page :is(.page-head .actions .btn,.section-head .actions .btn){flex:1 1 auto}.page :is(.panel,.card,.table-card){border-radius:13px}.modal-backdrop{padding:8px}.modal{max-height:calc(100dvh - 16px);border-radius:14px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}

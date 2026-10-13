@@ -1,0 +1,206 @@
+/* AVTOPARK PRO v80 — unified design system and responsive repairs */
+:root {
+  --ap-brand: #2563eb;
+  --ap-brand-dark: #173b78;
+  --ap-bg: #f3f6fb;
+  --ap-surface: #ffffff;
+  --ap-text: #172033;
+  --ap-muted: #718096;
+  --ap-border: #e2e8f0;
+  --ap-radius: 16px;
+  --ap-shadow: 0 8px 28px rgb(15 23 42 / 6%);
+  --ap-sidebar-width: 260px;
+}
+html[data-theme="dark"], [data-theme="dark"] {
+  color-scheme: dark;
+  --ap-bg: #0b1220;
+  --ap-surface: #111c2e;
+  --ap-text: #e7edf7;
+  --ap-muted: #9aa9c0;
+  --ap-border: #27364b;
+  --ap-shadow: 0 8px 28px rgb(0 0 0 / 18%);
+}
+html[data-theme="light"], [data-theme="light"] { color-scheme: light; }
+html, body, #root { max-width: 100%; min-width: 0; }
+body { background: var(--ap-bg); color: var(--ap-text); overflow-x: clip; }
+button, input, select, textarea { font: inherit; }
+button, [role="button"] { touch-action: manipulation; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+
+/* Keep the existing AppShell structure; override legacy !important rules safely. */
+.shell { display:flex !important; flex-direction:row !important; align-items:stretch !important; width:100% !important; min-width:0 !important; min-height:100dvh !important; overflow:clip; }
+.shell > .sidebar, .shell > aside.sidebar { flex:0 0 260px !important; width:260px !important; min-width:260px !important; max-width:260px !important; height:100dvh !important; min-height:0 !important; position:sticky !important; inset:auto !important; display:flex !important; flex-direction:column !important; overflow:hidden !important; z-index:200 !important; }
+.sidebar-nav { flex:1 1 auto !important; min-height:0 !important; overflow-y:auto !important; overflow-x:hidden !important; overscroll-behavior:contain; scrollbar-gutter:stable; }
+.shell > main.content { flex:1 1 auto !important; width:calc(100% - 260px) !important; min-width:0 !important; max-width:none !important; height:auto !important; min-height:100dvh !important; margin:0 !important; padding:0 !important; overflow-x:clip !important; overflow-y:visible !important; background:var(--ap-bg); }
+.content-inner { width:100%; min-width:0; max-width:none; padding:24px clamp(14px,2.3vw,32px) 32px; }
+.app-topbar { min-width:0; max-width:100%; padding-inline:clamp(14px,2.3vw,32px); }
+.mobile-menu { display:none; }
+.overlay { display:none; }
+
+/* Common hero/banner styling for legacy page headers */
+.page-head, .fleet-head, .trips-hero, .routes-hero {
+  position:relative; isolation:isolate; display:flex; align-items:center; justify-content:space-between;
+  gap:22px; min-height:184px; padding:26px 30px; margin:0 0 22px; overflow:hidden;
+  border:1px solid rgb(255 255 255 / 12%); border-radius:20px; color:#fff;
+  background:#122846 url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1800&q=85') center 54%/cover no-repeat;
+  box-shadow:0 14px 36px rgb(15 23 42 / 12%);
+}
+.page-head::before, .fleet-head::before, .trips-hero::before, .routes-hero::before { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(100deg, rgb(8 22 43 / 96%) 0%, rgb(12 39 75 / 88%) 56%, rgb(17 59 111 / 55%) 100%); }
+.page-head > div, .fleet-head > div, .trips-hero > div, .routes-hero > div { position:relative; z-index:1; min-width:0; }
+.page-head .eyebrow, .fleet-head .eyebrow, .trips-hero .eyebrow, .routes-hero .eyebrow { color:#b8d4ff; font-size:10px; font-weight:800; letter-spacing:.14em; }
+.page-head h1, .fleet-head h1, .trips-hero h1, .routes-hero h1 { color:#fff !important; font-size:clamp(24px,2.5vw,34px); font-weight:800; letter-spacing:-.035em; line-height:1.15; margin:0; overflow-wrap:anywhere; }
+.page-head p:not(.eyebrow), .fleet-head p:not(.eyebrow), .trips-hero p, .routes-hero p { max-width:680px; margin:9px 0 0; color:#d5e2f5 !important; font-size:13px; line-height:1.65; }
+.page-head .actions, .fleet-head-actions, .trip-head-actions, .routes-hero > button { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:9px; flex-shrink:0; }
+.page-head .btn, .fleet-head-actions button, .trip-head-actions button, .routes-hero > button { min-height:44px; border-radius:11px; }
+.page-head .btn:not(.primary), .fleet-head-actions .secondary-btn { color:#fff; background:rgb(255 255 255 / 10%); border-color:rgb(255 255 255 / 28%); }
+.page-head .btn.primary, .fleet-head-actions .primary-btn { color:#fff; }
+/* The warehouse hero retains its layout but shares the same banner treatment. */
+.warehouse-hero-reference { min-height:184px !important; border-radius:20px !important; background-image:linear-gradient(100deg,rgb(8 22 43 / 95%),rgb(12 39 75 / 78%)),url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1800&q=85') !important; background-position:center,right center !important; background-size:cover !important; }
+.warehouse-hero-reference h1 { font-size:clamp(24px,2.5vw,34px) !important; }
+
+/* Dashboard banner uses the same branded image/overlay system. */
+.dashboard-hero { position:relative; isolation:isolate; min-height:172px; display:flex; align-items:center !important; justify-content:space-between; gap:20px; padding:26px !important; margin-bottom:18px; border:1px solid rgb(255 255 255 / 12%); border-radius:20px; color:#fff !important; background:linear-gradient(100deg,rgb(8 22 43 / 96%),rgb(12 39 75 / 80%)),url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat !important; box-shadow:0 14px 36px rgb(15 23 42 / 12%); }
+.dashboard-hero h1 { color:#fff !important; font-size:clamp(25px,2.7vw,34px) !important; }
+.dashboard-hero p { color:#d5e2f5 !important; }
+.dashboard-hero .eyebrow { color:#b8d4ff !important; }
+.dashboard-hero .live-pill { color:#1d3557; }
+/* Dashboard cards and analytics: stable grid without flex overflow. */
+.dashboard-page, .dashboard-main-grid, .dashboard-analytics-grid, .dashboard-kpis, .dashboard-left, .dashboard-right, .analytics-card, .side-card, .operation-card, .dashboard-table-card { min-width:0; max-width:100%; }
+.dashboard-kpis { grid-template-columns:repeat(4,minmax(0,1fr)) !important; gap:14px !important; }
+.dashboard-analytics-grid { grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr) !important; gap:16px !important; }
+.dashboard-main-grid { grid-template-columns:minmax(0,1.7fr) minmax(270px,1fr) !important; gap:18px !important; }
+.dashboard-table-scroll, .table-scroll, .table-wrap, .table-responsive, .trip-table-wrap, .fuel-table, .maintenance-table, .pro-table-card, .reports-table-scroll, .members-table { width:100%; max-width:100%; min-width:0; overflow-x:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
+.dashboard-table-scroll table, .table-scroll table, .table-wrap table, .table-responsive table, .trip-table-wrap table, .fuel-table table, .maintenance-table table, .reports-table-scroll table, .members-table table { width:max-content; min-width:100%; }
+.dashboard-table-scroll th, .dashboard-table-scroll td { white-space:nowrap; }
+
+/* Fleet desktop table / mobile card stack */
+.fleet-mobile-cards { display:none; }
+.fleet-mobile-card { min-width:0; padding:16px; background:var(--ap-surface); color:var(--ap-text); border:1px solid var(--ap-border); border-radius:16px; box-shadow:var(--ap-shadow); }
+.fleet-mobile-card-top { display:flex; align-items:center; gap:11px; min-width:0; }
+.fleet-mobile-title { flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
+.fleet-mobile-title strong { font-size:16px; overflow-wrap:anywhere; }
+.fleet-mobile-title span { color:var(--ap-muted); font-size:12px; }
+.fleet-mobile-details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 12px; margin-top:18px; }
+.fleet-mobile-details > div { display:flex; flex-direction:column; gap:4px; min-width:0; }
+.fleet-mobile-details small { color:var(--ap-muted); font-size:11px; }
+.fleet-mobile-details strong { font-size:13px; overflow-wrap:anywhere; }
+.fleet-mobile-actions { display:flex; gap:8px; margin-top:15px; padding-top:13px; border-top:1px solid var(--ap-border); }
+.fleet-mobile-actions button { display:inline-flex; align-items:center; justify-content:center; gap:7px; flex:1; min-width:0; min-height:44px; padding:8px; border:1px solid var(--ap-border); border-radius:10px; background:var(--ap-surface); color:var(--ap-text); font-size:12px; font-weight:700; }
+.fleet-mobile-empty { display:grid; justify-items:center; gap:8px; padding:28px 16px; text-align:center; border:1px dashed var(--ap-border); border-radius:16px; color:var(--ap-muted); }
+.fleet-mobile-empty strong { color:var(--ap-text); }
+
+/* Dark mode surfaces, keeping the branded hero dark and legible. */
+[data-theme="dark"] body, html[data-theme="dark"] body { background:var(--ap-bg); color:var(--ap-text); }
+[data-theme="dark"] .stat, [data-theme="dark"] .panel, [data-theme="dark"] .analytics-card, [data-theme="dark"] .side-card, [data-theme="dark"] .operation-card, [data-theme="dark"] .dashboard-table-card, [data-theme="dark"] .fleet-table-card, [data-theme="dark"] .trip-main-panel, [data-theme="dark"] .trip-side-card { background:var(--ap-surface); color:var(--ap-text); border-color:var(--ap-border); }
+[data-theme="dark"] .stat strong, [data-theme="dark"] .panel h2, [data-theme="dark"] .panel h3 { color:var(--ap-text); }
+[data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea { background:var(--ap-surface); color:var(--ap-text); border-color:var(--ap-border); }
+
+@media (max-width:1100px) {
+  .dashboard-kpis { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .dashboard-analytics-grid, .dashboard-main-grid { grid-template-columns:minmax(0,1fr) !important; }
+}
+@media (max-width:760px) {
+  .shell { display:block !important; min-height:100dvh !important; }
+  .shell > .sidebar, .shell > aside.sidebar, .shell > .sidebar.role-viewer {
+    position:fixed !important; inset:0 auto 0 0 !important; width:min(310px,88vw) !important; min-width:0 !important; max-width:88vw !important; height:100dvh !important; min-height:0 !important; flex:0 0 auto !important; display:flex !important; visibility:hidden; transform:translateX(-105%); transition:transform .24s ease,visibility .24s ease; z-index:1200 !important; box-shadow:none !important; overflow:hidden !important; background:#101c32 !important;
+  }
+  .shell > .sidebar.is-open, .shell > aside.sidebar.is-open, .shell > .sidebar.role-viewer.is-open { visibility:visible !important; transform:translateX(0) !important; box-shadow:18px 0 55px rgb(0 0 0 / 24%) !important; }
+  .sidebar-nav { flex:1 1 auto !important; min-height:0 !important; max-height:none !important; overflow-y:auto !important; padding-bottom:max(18px,env(safe-area-inset-bottom)) !important; }
+  .mobile-menu { display:inline-flex !important; position:fixed !important; z-index:1100 !important; top:max(10px,env(safe-area-inset-top)) !important; left:12px !important; width:46px !important; height:46px !important; align-items:center !important; justify-content:center !important; border:1px solid var(--ap-border) !important; border-radius:13px !important; background:var(--ap-surface) !important; color:var(--ap-text) !important; box-shadow:var(--ap-shadow) !important; }
+  .close-menu { display:inline-flex !important; align-items:center; justify-content:center; width:42px; height:42px; color:#fff; }
+  .overlay { display:block !important; position:fixed !important; inset:0 !important; width:100% !important; height:100dvh !important; z-index:1150 !important; border:0 !important; background:rgb(3 10 22 / 62%) !important; backdrop-filter:blur(2px); }
+  .shell > main.content { display:block !important; width:100% !important; min-width:0 !important; min-height:100dvh !important; height:auto !important; margin:0 !important; padding:0 !important; overflow:visible !important; }
+  .content-inner { padding:72px 12px 24px !important; }
+  .app-topbar { min-height:58px !important; height:auto !important; position:relative !important; padding:8px 12px 8px 66px !important; flex-wrap:wrap !important; gap:10px !important; }
+  .topbar-context { min-width:0; }
+  .topbar-search { flex:1 1 100%; min-width:0; }
+  .topbar-user { display:none !important; }
+  .page-head, .fleet-head, .trips-hero, .routes-hero { flex-direction:column !important; align-items:stretch !important; gap:17px !important; min-height:0 !important; padding:22px 18px !important; margin-bottom:16px !important; border-radius:16px !important; background-position:center !important; }
+  .page-head h1, .fleet-head h1, .trips-hero h1, .routes-hero h1 { font-size:25px !important; }
+  .page-head .actions, .fleet-head-actions, .trip-head-actions, .routes-hero > button { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); justify-content:stretch !important; }
+  .page-head .actions .btn, .fleet-head-actions button, .trip-head-actions button, .routes-hero > button { width:100%; min-width:0; white-space:normal; }
+  .warehouse-hero-reference { flex-direction:column !important; align-items:stretch !important; gap:17px !important; padding:22px 18px !important; min-height:0 !important; }
+  .warehouse-hero-actions { display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; }
+  .warehouse-hero-actions .btn { min-width:0; white-space:normal; }
+  .dashboard-hero { flex-direction:column !important; align-items:stretch !important; padding:22px 18px !important; min-height:0; }
+  .dashboard-kpis, .dashboard-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; }
+  .dashboard-analytics-grid, .dashboard-main-grid { grid-template-columns:minmax(0,1fr) !important; gap:13px !important; margin-top:14px !important; }
+  .analytics-card, .side-card { padding:15px !important; }
+  .fleet-desktop-table { display:none !important; }
+  .fleet-mobile-cards { display:grid !important; grid-template-columns:minmax(0,1fr); gap:11px; }
+  .fleet-mobile-card .status-chip { flex:0 0 auto; }
+  .fleet-stats, .trip-kpis, .fuel-stats, .maintenance-stats, .warehouse-stats { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; }
+  .fleet-toolbar, .trip-toolbar, .fuel-toolbar { min-width:0; flex-wrap:wrap; }
+  .fleet-search, .trip-search { min-width:0; flex:1 1 100%; }
+  .trip-workspace { grid-template-columns:minmax(0,1fr) !important; }
+  .trip-table-wrap table { min-width:760px; }
+  .table-wrap table, .table-scroll table, .table-responsive table, .maintenance-table table, .fuel-table table, .reports-table-scroll table, .members-table table { min-width:720px; }
+  .form-grid, .trip-form-grid { grid-template-columns:minmax(0,1fr) !important; }
+  .modal-backdrop { padding:12px !important; align-items:flex-start !important; overflow-y:auto !important; }
+  .modal { width:100% !important; max-width:620px !important; max-height:calc(100dvh - 24px) !important; overflow-y:auto !important; margin:auto !important; }
+  button, .btn, .primary-btn, .secondary-btn, input, select { min-height:44px; }
+  input, select, textarea { font-size:16px !important; }
+}
+@media (max-width:420px) {
+  .content-inner { padding-inline:10px !important; }
+  .page-head .actions, .fleet-head-actions, .trip-head-actions, .routes-hero > button, .warehouse-hero-actions { grid-template-columns:minmax(0,1fr) !important; }
+  .dashboard-kpis, .dashboard-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .dashboard-kpi { min-width:0; padding:12px !important; }
+  .dashboard-kpi strong { font-size:21px !important; overflow-wrap:anywhere; }
+  .fleet-mobile-card { padding:13px; }
+  .fleet-mobile-card-top { flex-wrap:wrap; }
+  .fleet-mobile-card-top .status-chip { margin-left:auto; }
+  .fleet-stats, .trip-kpis, .fuel-stats, .maintenance-stats, .warehouse-stats { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+}
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+
+/* V81 polish: give each operational section its own photographic identity. */
+.fleet-head {
+  background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1800&q=85');
+  background-position: center 55%;
+}
+.trips-hero {
+  background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85');
+}
+.routes-hero {
+  background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85');
+  background-position: center 52%;
+}
+/* Avoid accidental overflow from long names, monetary values, and charts. */
+.content-inner > *, .fleet-page, .trips-page, .routes-page, .warehouse-page,
+.dashboard-page, .panel, .card, .stat, .trip-workspace, .routes-layout {
+  min-width: 0;
+  max-width: 100%;
+}
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:disabled { cursor: not-allowed; opacity: .58; }
+.table-scroll, .table-wrap, .trip-table-wrap, .dashboard-table-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ap-border) transparent;
+}
+@media (max-width:760px) {
+  .fleet-head { background-position: 58% center; }
+  .trips-hero { background-position: 60% center; }
+  .routes-hero { background-position: 58% center; }
+  .app-topbar > * { min-width: 0; max-width: 100%; }
+  .app-topbar input { min-width: 0; }
+  .dashboard-table-card, .pro-table-card, .fleet-table-card, .trip-main-panel {
+    max-width: 100%; min-width: 0;
+  }
+  .dashboard-table-scroll table, .table-scroll table, .table-wrap table,
+  .trip-table-wrap table, .fuel-table table, .maintenance-table table,
+  .reports-table-scroll table, .members-table table {
+    min-width: 720px;
+  }
+  .route-row { min-width: 0; }
+  .route-main, .route-main > div:last-child { min-width: 0; }
+  .route-main strong, .route-main span { overflow-wrap: anywhere; }
+  .modal-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modal-actions > button { flex: 1 1 140px; }
+}
+@media (max-width:380px) {
+  .dashboard-kpis, .dashboard-kpi-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .dashboard-kpis .stat, .dashboard-kpi { padding: 11px !important; }
+  .dashboard-kpis .stat strong, .dashboard-kpi strong { font-size: 19px !important; }
+  .trip-head-actions, .fleet-head-actions { grid-template-columns: minmax(0,1fr) !important; }
+}

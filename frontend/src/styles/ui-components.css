@@ -1,0 +1,356 @@
+:root{--ap-bg:#f3f7fc;--ap-surface:#fff;--ap-text:#10213e;--ap-muted:#667894;--ap-border:#dce6f2;--ap-blue:#0878f9;--ap-shadow:0 12px 30px rgba(22,54,96,.09)}
+:root[data-theme="dark"]{--ap-bg:#071426;--ap-surface:#0d2036;--ap-text:#edf5ff;--ap-muted:#9fb2cc;--ap-border:#243a55;--ap-shadow:0 12px 30px rgba(0,0,0,.18);color-scheme:dark}
+body{background:var(--ap-bg);color:var(--ap-text)}
+.ap-page-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;min-height:178px;margin:0 0 22px;padding:25px 27px;border:1px solid rgba(255,255,255,.15);border-radius:20px;background-size:cover;background-position:center;color:#fff;box-shadow:var(--ap-shadow);overflow:hidden}
+.ap-page-hero__content{min-width:0}.ap-breadcrumbs,.ap-breadcrumbs__item{display:flex;align-items:center;gap:7px}.ap-breadcrumbs{flex-wrap:wrap;margin-bottom:20px;color:#c7ddff;font-size:12px}.ap-breadcrumbs a{color:inherit;text-decoration:none}.ap-breadcrumbs a:hover{text-decoration:underline}.ap-page-hero__title-row{display:flex;align-items:center;gap:15px}.ap-page-hero__icon{display:grid;place-items:center;flex:0 0 52px;width:52px;height:52px;border:1px solid #ffffff36;border-radius:16px;background:#ffffff1b;color:#fff}.ap-page-hero h1{margin:0;color:#fff;font-size:clamp(23px,2.3vw,32px);line-height:1.2;font-weight:800;letter-spacing:-.025em}.ap-page-hero p{margin:7px 0 0;color:#d4e4fa;font-size:14px;line-height:1.55;max-width:680px}.ap-page-hero__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:9px;flex-shrink:0}.ap-btn,.ap-theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 15px;border:1px solid transparent;border-radius:12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}.ap-btn:hover,.ap-theme-toggle:hover{transform:translateY(-1px)}.ap-btn:disabled{opacity:.65;cursor:wait}.ap-btn--ghost{color:#fff;background:#ffffff16;border-color:#ffffff35;backdrop-filter:blur(8px)}.ap-btn--ghost:hover{background:#ffffff25}.ap-btn--primary{color:#fff;background:linear-gradient(135deg,#1685ff,#075de0);box-shadow:0 6px 18px #0068ef42}.ap-btn--primary:hover{background:linear-gradient(135deg,#3695ff,#0869f3)}.ap-theme-toggle{color:var(--ap-text);background:var(--ap-surface);border-color:var(--ap-border)}.ap-spin{animation:ap-spin .8s linear infinite}@keyframes ap-spin{to{transform:rotate(360deg)}}
+.ap-responsive-data{min-width:0}.ap-data-table-wrap{overflow:auto;border:1px solid var(--ap-border);border-radius:14px;background:var(--ap-surface)}.ap-data-table{width:100%;border-collapse:collapse;text-align:left;color:var(--ap-text);font-size:13px}.ap-data-table th{padding:13px 15px;background:color-mix(in srgb,var(--ap-bg) 78%,var(--ap-surface));color:var(--ap-muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.ap-data-table td{padding:14px 15px;border-top:1px solid var(--ap-border);vertical-align:middle}.ap-data-cards{display:none}.ap-data-empty{padding:25px;text-align:center;color:var(--ap-muted)}
+@media(max-width:760px){.ap-page-hero{align-items:stretch;flex-direction:column;gap:18px;min-height:0;padding:20px;border-radius:16px;margin-bottom:16px}.ap-breadcrumbs{margin-bottom:15px}.ap-page-hero__title-row{align-items:flex-start;gap:12px}.ap-page-hero__icon{flex-basis:44px;width:44px;height:44px;border-radius:13px}.ap-page-hero p{font-size:13px}.ap-page-hero__actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}.ap-page-hero__actions>*{width:100%;padding-inline:10px}.ap-btn{min-height:46px}.ap-data-table-wrap{display:none}.ap-data-cards{display:grid;gap:10px}.ap-data-card{min-width:0;padding:14px;border:1px solid var(--ap-border);border-radius:14px;background:var(--ap-surface);box-shadow:0 4px 14px #19375b08}.ap-data-card header{display:grid;gap:4px;padding-bottom:10px;border-bottom:1px solid var(--ap-border);color:var(--ap-text)}.ap-data-card header span{color:var(--ap-muted);font-size:12px}.ap-data-card dl{display:grid;gap:9px;margin:11px 0 0}.ap-data-card dl>div{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.ap-data-card dt{color:var(--ap-muted);font-size:12px}.ap-data-card dd{margin:0;text-align:right;color:var(--ap-text);font-size:12px;font-weight:650;overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){.ap-btn,.ap-theme-toggle{transition:none}.ap-spin{animation:none}}
+:root[data-theme="dark"] .dashboard-page{color:var(--ap-text)}
+:root[data-theme="dark"] .dashboard-kpi,:root[data-theme="dark"] .analytics-card,:root[data-theme="dark"] .side-card,:root[data-theme="dark"] .operation-card,:root[data-theme="dark"] .dashboard-table-card{background:var(--ap-surface)!important;border-color:var(--ap-border)!important;color:var(--ap-text)!important}
+:root[data-theme="dark"] .dashboard-page h2,:root[data-theme="dark"] .dashboard-page h3,:root[data-theme="dark"] .dashboard-page .kpi-label,:root[data-theme="dark"] .dashboard-page .dashboard-table-card td{color:var(--ap-text)}
+:root[data-theme="dark"] .dashboard-page p,:root[data-theme="dark"] .dashboard-page small,:root[data-theme="dark"] .dashboard-page .eyebrow,:root[data-theme="dark"] .dashboard-page .dashboard-table-card th{color:var(--ap-muted)}
+:root[data-theme="dark"] .dashboard-table-card th,:root[data-theme="dark"] .dashboard-table-card td{border-color:var(--ap-border)!important}
+.ap-status-pills{display:flex;gap:8px;max-width:100%;overflow-x:auto;padding:3px 1px 8px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}.ap-status-pill{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;min-height:44px;padding:0 15px;border:1px solid var(--ap-border);border-radius:999px;background:var(--ap-surface);color:var(--ap-muted);font:inherit;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer}.ap-status-pill.is-active{background:#e6f1ff;border-color:#a8ceff;color:#075ecb}.ap-status-pill span{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#ffffffb8;font-size:11px}.ap-status-pill:focus-visible,.ap-btn:focus-visible,.ap-theme-toggle:focus-visible{outline:3px solid #66aaff;outline-offset:2px}
+:root[data-theme="dark"] .ap-status-pill.is-active{background:#123a68;border-color:#2866a8;color:#d7eaff}
+
+/* AVTOPARK PRO — FINAL SIDEBAR POSITION FIX */
+
+/* Desktop: sidebar doim ekranda qoladi */
+@media (min-width: 761px) {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  .shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .shell > aside.sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+
+    z-index: 1100 !important;
+  }
+
+  .shell > aside.sidebar .sidebar-nav {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .shell > main.content {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+    min-width: 0 !important;
+  }
+
+  .shell > main.content > header.app-topbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+  }
+}
+
+/* Mobil menyuning mavjud ochilish/yopilish holatini saqlash */
+@media (max-width: 760px) {
+  .shell > aside.sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+
+    width: min(290px, 86vw) !important;
+    min-width: 0 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    transform: translateX(-105%);
+    visibility: hidden;
+    pointer-events: none;
+
+    z-index: 1200 !important;
+    transition:
+      transform 220ms ease,
+      visibility 220ms ease;
+  }
+
+  .shell > aside.sidebar.is-open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  .shell > main.content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* AVTOPARK PRO — Platform Control Center dark cards fix */
+
+/* Platform bo'limidagi barcha asosiy panellar */
+.platform-page > .card,
+.platform-page .platform-grid > .card {
+  background: #151f35 !important;
+  color: #e8eefb !important;
+  border: 1px solid #2c3a55 !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%) !important;
+}
+
+/* Global tarif kartochkalari */
+.platform-page .plan-grid .plan-card {
+  background: #1b2942 !important;
+  color: #edf3ff !important;
+  border: 1px solid #344662 !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+
+.platform-page .plan-grid .plan-card b {
+  display: block;
+  color: #eaf1ff !important;
+}
+
+.platform-page .plan-grid .plan-card strong {
+  display: block;
+  color: #ffffff !important;
+  overflow-wrap: anywhere;
+}
+
+.platform-page .plan-grid .plan-card small {
+  display: block;
+  color: #b4c3dc !important;
+}
+
+.platform-page .plan-grid .plan-card span {
+  color: #4adea0 !important;
+}
+
+/* Xavfsizlik hodisalari — oq fonni yo'qotish */
+.platform-page .event-list .event-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1b2942 !important;
+  color: #eaf1ff !important;
+  border: 1px solid #344662 !important;
+  border-radius: 12px !important;
+  margin-bottom: 6px;
+  padding: 12px !important;
+  box-shadow: none !important;
+}
+
+.platform-page .event-row b {
+  color: #f1f5ff !important;
+}
+
+.platform-page .event-row small {
+  color: #b3c3dd !important;
+}
+
+.platform-page .event-row code {
+  color: #a9c5f5 !important;
+  background: #243550 !important;
+  border-radius: 5px;
+  padding: 4px 6px;
+}
+
+/* Jadval konteyneri */
+.platform-page .table-wrap {
+  background: #151f35 !important;
+  border-radius: 12px;
+}
+
+/* Jadval sarlavhalari */
+.platform-page .table-wrap table thead th {
+  background: #202e49 !important;
+  color: #cbd9f0 !important;
+  border-color: #34445f !important;
+}
+
+/* Jadvalning barcha qatorlari */
+.platform-page .table-wrap table tbody tr,
+.platform-page .table-wrap table tbody tr:nth-child(even),
+.platform-page .table-wrap table tbody tr:nth-child(odd) {
+  background: #1b2942 !important;
+  color: #e6edfa !important;
+}
+
+.platform-page .table-wrap table tbody td {
+  background: transparent !important;
+  color: #dce7f8 !important;
+  border-color: #34445f !important;
+}
+
+.platform-page .table-wrap table tbody td b {
+  color: #f0f5ff !important;
+}
+
+.platform-page .table-wrap table tbody td small {
+  color: #aebfda !important;
+}
+
+/* Hover — doimiy to'q fon, ustiga borganda yengil ko'k */
+.platform-page .plan-card:hover,
+.platform-page .event-row:hover,
+.platform-page .table-wrap table tbody tr:hover {
+  background: #263957 !important;
+  transition: background-color 160ms ease;
+}
+
+/* Status ranglari */
+.platform-page .status-pill.success {
+  color: #047857 !important;
+  background: #d1fae5 !important;
+}
+
+.platform-page .status-pill.warning {
+  color: #92400e !important;
+  background: #fef3c7 !important;
+}
+
+/* AVTOPARK PRO — Warehouse hero text contrast fix */
+
+.warehouse-hero-reference {
+  color: #ffffff !important;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(7, 20, 42, 0.94) 0%,
+      rgba(7, 25, 51, 0.82) 48%,
+      rgba(7, 25, 51, 0.42) 100%
+    ),
+    url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=85") !important;
+  background-position: center, right center !important;
+  background-size: cover !important;
+}
+
+.warehouse-hero-reference .eyebrow {
+  color: #93c5fd !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.warehouse-hero-reference h1 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.warehouse-hero-reference p {
+  color: #e2eaf7 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.warehouse-hero-reference .ghost-light {
+  color: #17365f !important;
+  background: #ffffff !important;
+  border: 1px solid #ffffff !important;
+}
+
+.warehouse-hero-reference .btn.primary {
+  color: #ffffff !important;
+}
+
+/* AVTOPARK PRO — Mobile header layout correction */
+
+@media (max-width: 760px) {
+  .shell > .content > .app-topbar,
+  .app-topbar {
+    position: relative !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    height: auto !important;
+    min-height: 96px !important;
+    padding: 8px 12px !important;
+
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sana va filial: hamburger uchun joy qoldirish */
+  .app-topbar .topbar-context {
+    order: 1;
+    flex: 1 1 100% !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin-left: 52px !important;
+    min-height: 36px;
+    overflow: hidden;
+  }
+
+  .app-topbar .topbar-context strong,
+  .app-topbar .topbar-context small {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Qidiruv: alohida, to'liq kenglikdagi qator */
+  .app-topbar .topbar-search {
+    order: 2;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .app-topbar .topbar-search input {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Header ichidagi elementlar ekrandan chiqmasin */
+  .app-topbar > * {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Hamburger doim header ustida */
+  .mobile-menu {
+    position: fixed !important;
+    top: 10px !important;
+    left: 10px !important;
+    width: 44px !important;
+    height: 44px !important;
+    z-index: 1400 !important;
+  }
+
+  /* Sahifa header tagidan boshlansin */
+  .shell > .content > .content-inner {
+    padding: 12px !important;
+    margin-top: 0 !important;
+  }
+
+  /* Banner va sahifa sarlavhalari */
+  .content-inner .page-head,
+  .content-inner .warehouse-hero-reference,
+  .content-inner .notifications-page {
+    margin-top: 0 !important;
+  }
+}
