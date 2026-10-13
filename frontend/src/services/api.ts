@@ -1,4 +1,5 @@
-const API = "/api/v1";
+const BASE_URL = (import.meta as any).env?.VITE_API_URL || "https://avtopark-pro-2.onrender.com";
+const API = `${BASE_URL.replace(/\/$/, "")}/api/v1`;
 
 function getCookie(name: string) {
   return document.cookie.split("; ").find(row => row.startsWith(`${name}=`))?.split("=")[1];
@@ -143,16 +144,9 @@ export function chatWebSocket(userId:number): WebSocket {
   const base = configured || `${protocol}//${host}`;
   return new WebSocket(`${base.replace(/\/$/, '')}/ws/chat/${userId}/`);
 }
-// O'zingizdagi api faylini ochib, shu qismni toping va to'g'rilang:
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://avtopark-pro-2.onrender.com';
-
-// Agar fetch ishlatilayotgan bo'lsa, URL larni shu o'zgaruvchiga ulab ketasiz:
-// Masalan: fetch(`${API_URL}/api/login/`, ...)
-
-// Agar oddiy o'zingizning yozgan api obyektingiz yoki baseURL bo'lsa:
 export const apiConfig = {
-    baseURL: API_URL,
+    baseURL: BASE_URL,
 };
 
-export default API_URL;
+export default BASE_URL;
