@@ -28,7 +28,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   csrf: () => request<{csrfToken:string}>("/csrf/"),
-  login: (username:string,password:string) => request("/auth/login/", {method:"POST",body:JSON.stringify({username,password})}),
+  login: async (username: string, password: string) => {
+    // Har safar login qilishdan oldin serverdan CSRF token olib kelinadi
+    await api.csrf();
+    return request("/auth/login/", {
+      method: "POST",
+      body: JSON.stringify({ username, password })
+    });
+  },
   logout: () => request("/auth/logout/", {method:"POST"}),
   me: () => request<import("../types/api").Me>("/me/"),
   uploadAvatar: (file:File) => { const fd=new FormData(); fd.append("avatar",file); return request<any>("/auth/profile/avatar/", {method:"POST",body:fd}); },
