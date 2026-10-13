@@ -143,4 +143,16 @@ export function chatWebSocket(userId:number): WebSocket {
   const base = configured || `${protocol}//${host}`;
   return new WebSocket(`${base.replace(/\/$/, '')}/ws/chat/${userId}/`);
 }
+// O'zingizdagi api faylini ochib, shu qismni toping va to'g'rilang:
+
 const API_URL = import.meta.env.VITE_API_URL || 'https://avtopark-pro-2.onrender.com';
+
+// Agar fetch ishlatilayotgan bo'lsa, URL larni shu o'zgaruvchiga ulab ketasiz:
+// Masalan: fetch(`${API_URL}/api/login/`, ...)
+
+// Agar oddiy o'zingizning yozgan api obyektingiz yoki baseURL bo'lsa:
+export const apiConfig = {
+    baseURL: API_URL,
+};
+
+export default API_URL;
