@@ -7,8 +7,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'avtopark-pro-dev-key-change-in-prod
 
 DEBUG = os.getenv('DEBUG', 'True').lower() in {'1', 'true', 'yes', 'on'}
 
-# ALLOWED_HOSTS = [x.strip() for x in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,0.0.0.0').split(',') if x.strip()]
-ALLOWED_HOSTS = [x.strip() for x in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if x.strip()]
+# Render va lokal uchun ruxsat etilgan hostlar
+ALLOWED_HOSTS = [x.strip() for x in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,.onrender.com').split(',') if x.strip()]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -19,6 +19,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [x.strip() for x in os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5173').split(',') if x.strip()]
+
 INSTALLED_APPS = [
     'daphne',  # Enable ASGI/WebSocket support in Django's development server.
     'django.contrib.admin',
@@ -66,7 +67,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
-# WebSocket channel layer. Redis is recommended for production/multiple workers.
 REDIS_URL = os.getenv('REDIS_URL', '').strip()
 if REDIS_URL:
     CHANNEL_LAYERS = {
@@ -76,13 +76,10 @@ if REDIS_URL:
         }
     }
 else:
-    # Local development fallback. Use Redis in production.
     CHANNEL_LAYERS = {
         'default': {'BACKEND': 'channels.layers.InMemoryChannelLayer'}
     }
 
-# AVTOPARK PRO: hozircha Django'ning ichki SQLite bazasidan foydalanamiz.
-# PostgreSQL'ga o'tish alohida migratsiya bosqichida amalga oshiriladi.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -121,15 +118,14 @@ STORAGES = {
 }
 
 # ============ CSRF sozlamalari ============
-# Muhim: 5173 — Vite dev server, 8000 — Django backend.
-# Ikkalasi ham ishonchli manbalar ro'yxatida bo'lishi shart.
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "https://*.onrender.com",
 ]
-# Env orqali qo'shimcha manzillar (production uchun)
+
 CSRF_TRUSTED_ORIGINS += [
     x.strip() for x in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if x.strip()
 ]
@@ -137,7 +133,6 @@ CSRF_TRUSTED_ORIGINS += [
 CSRF_COOKIE_HTTPONLY = False
 CSRF_USE_SESSIONS = False
 CSRF_FAILURE_VIEW = 'api.views.csrf_failure'
-
 # ==========================================
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -146,7 +141,6 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-# Production security defaults. HTTPS/proxy bilan ishlaganda DEBUG=False qiling.
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_REFERRER_POLICY = 'same-origin'
 X_FRAME_OPTIONS = 'DENY'
@@ -156,7 +150,6 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = False
 
-# Celery: production workloads should be enqueued, not run in request handlers.
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', os.getenv('REDIS_URL', 'redis://localhost:6379/1'))
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', os.getenv('REDIS_URL', 'redis://localhost:6379/2'))
 CELERY_TASK_ACKS_LATE = True
