@@ -13,7 +13,7 @@ import "./styles/reference-dashboard.css";
 import "./styles/layout-fix.css";
 import "./styles/avtopark-design-system.css";
 import "./styles/ui-components.css"
-import "./styles/auth-layout-fix.css";
+import "./styles/auth-layout-fix2.css";
 
 const Dashboard = lazy(() => import("./pages/Dashboard").then(m => ({ default: m.Dashboard })));
 const DriverHome = lazy(() => import("./pages/DriverHome").then(m => ({ default: m.DriverHome })));
