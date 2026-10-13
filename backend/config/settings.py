@@ -24,12 +24,13 @@ if env_hosts:
 
 # ============ CORS Sozlamalari ============
 CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True  # <--- MUHIM: credentials: "include" ishlashi uchun shart!
 
 # Vercel va lokal domenlarni kiritamiz
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://avtopark-pro.vercel.app", # <-- Vercel frontend manzilingizni shu yerga yozing
+    "https://avtopark-pro.vercel.app",
 ]
 
 env_cors = os.getenv('CORS_ALLOWED_ORIGINS', '')
@@ -42,7 +43,7 @@ if env_cors:
 
 INSTALLED_APPS = [
     'daphne',  # Enable ASGI/WebSocket support
-    'corsheaders',  # <--- MUHIM: CORS uchun qo'shildi
+    'corsheaders',  # CORS uchun
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # <--- MUHIM: Doimo eng birinchi bo'lishi kerak!
+    'corsheaders.middleware.CorsMiddleware',  # Doimo eng birinchi bo'lishi kerak!
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -146,7 +147,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "https://avtopark-pro-2.onrender.com",
-    "https://avtopark-pro.vercel.app",  # <-- Vercel manzili qo'shildi
+    "https://avtopark-pro.vercel.app",
     "https://*.onrender.com",
     "https://*.vercel.app",
 ]
