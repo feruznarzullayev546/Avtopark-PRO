@@ -24,7 +24,7 @@ if env_hosts:
 
 # ============ CORS Sozlamalari ============
 CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOW_CREDENTIALS = True  # <--- MUHIM: credentials: "include" ishlashi uchun shart!
+CORS_ALLOW_CREDENTIALS = True  # MUHIM: credentials: "include" ishlashi uchun shart!
 
 # Vercel va lokal domenlarni kiritamiz
 CORS_ALLOWED_ORIGINS = [
@@ -197,5 +197,5 @@ if not DEBUG:
         raise RuntimeError('ALLOWED_HOSTS must not contain * in production')
     SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'true').lower() in {'1','true','yes'}
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = 'Lax'
-    CSRF_COOKIE_SAMESITE = 'Lax'
+    SESSION_COOKIE_SAMESITE = 'None'  # 'Lax' o'rniga 'None' qilindi
+    CSRF_COOKIE_SAMESITE = 'None'     # 'Lax' o'rniga 'None' qilindi
