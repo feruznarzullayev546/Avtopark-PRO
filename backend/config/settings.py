@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'avtopark-pro-dev-key-change-in-production')
 
-DEBUG = os.getenv('DEBUG', 'False').lower() in {'1', 'true', 'yes', 'on'}
+DEBUG = os.getenv('DEBUG', 'true').lower() in {'1', 'true', 'yes', 'on'}
 
 # Render va lokal hostlar uchun to'g'ridan-to'g'ri ruxsatlar
 ALLOWED_HOSTS = [
