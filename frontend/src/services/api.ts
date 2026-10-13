@@ -143,3 +143,4 @@ export function chatWebSocket(userId:number): WebSocket {
   const base = configured || `${protocol}//${host}`;
   return new WebSocket(`${base.replace(/\/$/, '')}/ws/chat/${userId}/`);
 }
+const API_URL = import.meta.env.VITE_API_URL || 'https://avtopark-pro-2.onrender.com';
